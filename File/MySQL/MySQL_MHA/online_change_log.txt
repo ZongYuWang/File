@@ -1,0 +1,89 @@
+[root@node1 bin]# masterha_master_switch --conf=/etc/masterha/app1.cnf --master_state=alive --new_master_host=172.30.105.119 --new_master_port=3306 --orig_master_is_new_slave --running_updates_limit=10000
+Sat Jul  8 23:42:11 2017 - [info] MHA::MasterRotate version 0.55.
+Sat Jul  8 23:42:11 2017 - [info] Starting online master switch..
+Sat Jul  8 23:42:11 2017 - [info] 
+Sat Jul  8 23:42:11 2017 - [info] * Phase 1: Configuration Check Phase..
+Sat Jul  8 23:42:11 2017 - [info] 
+Sat Jul  8 23:42:11 2017 - [warning] Global configuration file /etc/masterha_default.cnf not found. Skipping.
+Sat Jul  8 23:42:11 2017 - [info] Reading application default configurations from /etc/masterha/app1.cnf..
+Sat Jul  8 23:42:11 2017 - [info] Reading server configurations from /etc/masterha/app1.cnf..
+Sat Jul  8 23:42:12 2017 - [info] Current Alive Master: 172.30.105.116(172.30.105.116:3306)
+Sat Jul  8 23:42:12 2017 - [info] Alive Slaves:
+Sat Jul  8 23:42:12 2017 - [info]   172.30.105.118(172.30.105.118:3306)  Version=5.5.56-MariaDB (oldest major version between slaves) log-bin:enabled
+Sat Jul  8 23:42:12 2017 - [info]     Replicating from 172.30.105.116(172.30.105.116:3306)
+Sat Jul  8 23:42:12 2017 - [info]     Primary candidate for the new Master (candidate_master is set)
+Sat Jul  8 23:42:12 2017 - [info]   172.30.105.119(172.30.105.119:3306)  Version=5.5.56-MariaDB (oldest major version between slaves) log-bin:enabled
+Sat Jul  8 23:42:12 2017 - [info]     Replicating from 172.30.105.116(172.30.105.116:3306)
+Sat Jul  8 23:42:12 2017 - [info]     Primary candidate for the new Master (candidate_master is set)
+
+It is better to execute FLUSH NO_WRITE_TO_BINLOG TABLES on the master before switching. Is it ok to execute on 172.30.105.116(172.30.105.116:3306)? (YES/no): yes
+Sat Jul  8 23:42:15 2017 - [info] Executing FLUSH NO_WRITE_TO_BINLOG TABLES. This may take long time..
+Sat Jul  8 23:42:15 2017 - [info]  ok.
+Sat Jul  8 23:42:15 2017 - [info] Checking MHA is not monitoring or doing failover..
+Sat Jul  8 23:42:15 2017 - [info] Checking replication health on 172.30.105.118..
+Sat Jul  8 23:42:15 2017 - [info]  ok.
+Sat Jul  8 23:42:15 2017 - [info] Checking replication health on 172.30.105.119..
+Sat Jul  8 23:42:15 2017 - [info]  ok.
+Sat Jul  8 23:42:15 2017 - [info] 172.30.105.119 can be new master.
+Sat Jul  8 23:42:15 2017 - [info] 
+From:
+172.30.105.116 (current master)
+ +--172.30.105.118
+ +--172.30.105.119
+
+To:
+172.30.105.119 (new master)
+ +--172.30.105.118
+ +--172.30.105.116
+
+Starting master switch from 172.30.105.116(172.30.105.116:3306) to 172.30.105.119(172.30.105.119:3306)? (yes/NO): yes
+Sat Jul  8 23:42:18 2017 - [info] Checking whether 172.30.105.119(172.30.105.119:3306) is ok for the new master..
+Sat Jul  8 23:42:18 2017 - [info]  ok.
+Sat Jul  8 23:42:18 2017 - [info] 172.30.105.116(172.30.105.116:3306): SHOW SLAVE STATUS returned empty result. To check replication filtering rules, temporarily executing CHANGE MASTER to a dummy host.
+Sat Jul  8 23:42:18 2017 - [info] 172.30.105.116(172.30.105.116:3306): Resetting slave pointing to the dummy host.
+Sat Jul  8 23:42:19 2017 - [info] ** Phase 1: Configuration Check Phase completed.
+Sat Jul  8 23:42:19 2017 - [info] 
+Sat Jul  8 23:42:19 2017 - [info] * Phase 2: Rejecting updates Phase..
+Sat Jul  8 23:42:19 2017 - [info] 
+master_ip_online_change_script is not defined. If you do not disable writes on the current master manually, applications keep writing on the current master. Is it ok to proceed? (yes/NO): yes
+Sat Jul  8 23:43:04 2017 - [info] Locking all tables on the orig master to reject updates from everybody (including root):
+Sat Jul  8 23:43:04 2017 - [info] Executing FLUSH TABLES WITH READ LOCK..
+Sat Jul  8 23:43:04 2017 - [info]  ok.
+Sat Jul  8 23:43:04 2017 - [info] Orig master binlog:pos is mysql-bin.000019:245.
+Sat Jul  8 23:43:04 2017 - [info]  Waiting to execute all relay logs on 172.30.105.119(172.30.105.119:3306)..
+Sat Jul  8 23:43:04 2017 - [info]  master_pos_wait(mysql-bin.000019:245) completed on 172.30.105.119(172.30.105.119:3306). Executed 0 events.
+Sat Jul  8 23:43:04 2017 - [info]   done.
+Sat Jul  8 23:43:04 2017 - [info] Getting new master's binlog name and position..
+Sat Jul  8 23:43:04 2017 - [info]  mysql-bin.000009:245
+Sat Jul  8 23:43:04 2017 - [info]  All other slaves should start replication from here. Statement should be: CHANGE MASTER TO MASTER_HOST='172.30.105.119', MASTER_PORT=3306, MASTER_LOG_FILE='mysql-bin.000009', MASTER_LOG_POS=245, MASTER_USER='repluser', MASTER_PASSWORD='xxx';
+Sat Jul  8 23:43:04 2017 - [info] Setting read_only=0 on 172.30.105.119(172.30.105.119:3306)..
+Sat Jul  8 23:43:04 2017 - [info]  ok.
+Sat Jul  8 23:43:04 2017 - [info] 
+Sat Jul  8 23:43:04 2017 - [info] * Switching slaves in parallel..
+Sat Jul  8 23:43:04 2017 - [info] 
+Sat Jul  8 23:43:04 2017 - [info] -- Slave switch on host 172.30.105.118(172.30.105.118:3306) started, pid: 36936
+Sat Jul  8 23:43:04 2017 - [info] 
+Sat Jul  8 23:43:05 2017 - [info] Log messages from 172.30.105.118 ...
+Sat Jul  8 23:43:05 2017 - [info] 
+Sat Jul  8 23:43:04 2017 - [info]  Waiting to execute all relay logs on 172.30.105.118(172.30.105.118:3306)..
+Sat Jul  8 23:43:04 2017 - [info]  master_pos_wait(mysql-bin.000019:245) completed on 172.30.105.118(172.30.105.118:3306). Executed 0 events.
+Sat Jul  8 23:43:04 2017 - [info]   done.
+Sat Jul  8 23:43:04 2017 - [info]  Resetting slave 172.30.105.118(172.30.105.118:3306) and starting replication from the new master 172.30.105.119(172.30.105.119:3306)..
+Sat Jul  8 23:43:04 2017 - [info]  Executed CHANGE MASTER.
+Sat Jul  8 23:43:05 2017 - [info]  Slave started.
+Sat Jul  8 23:43:05 2017 - [info] End of log messages from 172.30.105.118 ...
+Sat Jul  8 23:43:05 2017 - [info] 
+Sat Jul  8 23:43:05 2017 - [info] -- Slave switch on host 172.30.105.118(172.30.105.118:3306) succeeded.
+Sat Jul  8 23:43:05 2017 - [info] Unlocking all tables on the orig master:
+Sat Jul  8 23:43:05 2017 - [info] Executing UNLOCK TABLES..
+Sat Jul  8 23:43:05 2017 - [info]  ok.
+Sat Jul  8 23:43:05 2017 - [info] Starting orig master as a new slave..
+Sat Jul  8 23:43:05 2017 - [info]  Resetting slave 172.30.105.116(172.30.105.116:3306) and starting replication from the new master 172.30.105.119(172.30.105.119:3306)..
+Sat Jul  8 23:43:06 2017 - [info]  Executed CHANGE MASTER.
+Sat Jul  8 23:43:06 2017 - [info]  Slave started.
+Sat Jul  8 23:43:06 2017 - [info] All new slave servers switched successfully.
+Sat Jul  8 23:43:06 2017 - [info] 
+Sat Jul  8 23:43:06 2017 - [info] * Phase 5: New master cleanup phase..
+Sat Jul  8 23:43:06 2017 - [info] 
+Sat Jul  8 23:43:06 2017 - [info]  172.30.105.119: Resetting slave info succeeded.
+Sat Jul  8 23:43:06 2017 - [info] Switching master to 172.30.105.119(172.30.105.119:3306) completed successfully.

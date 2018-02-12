@@ -1,0 +1,264 @@
+[root@node1 bin]# tail -f /data/masterha/
+app1/        manager.log  scripts/     
+[root@node1 bin]# tail -f /data/masterha/manager.log 
+
+IN SCRIPT TEST====/sbin/ifconfig eth0:1 down==/sbin/ifconfig eth0:1 172.30.105.120/24===
+
+Checking the Status of the script.. OK 
+Sat Jul  8 18:50:34 2017 - [info]  OK.
+Sat Jul  8 18:50:34 2017 - [warning] shutdown_script is not defined.
+Sat Jul  8 18:50:34 2017 - [info] Set master ping interval 1 seconds.
+Sat Jul  8 18:50:34 2017 - [warning] secondary_check_script is not defined. It is highly recommended setting it to check master reachability from two or more routes.
+Sat Jul  8 18:50:34 2017 - [info] Starting ping health check on 172.30.105.116(172.30.105.116:3306)..
+Sat Jul  8 18:50:34 2017 - [info] Ping(SELECT) succeeded, waiting until MySQL doesn't respond..
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sat Jul  8 18:53:27 2017 - [warning] Got error on MySQL select ping: 2006 (MySQL server has gone away)
+Sat Jul  8 18:53:27 2017 - [info] Executing SSH check script: save_binary_logs --command=test --start_pos=4 --binlog_dir=/mydata/binlogs/ --output_file=/data/masterha/app1/save_binary_logs_test --manager_version=0.55 --binlog_prefix=mysql-bin
+Sat Jul  8 18:53:28 2017 - [warning] Got error on MySQL connect: 2013 (Lost connection to MySQL server at 'reading initial communication packet', system error: 111)
+Sat Jul  8 18:53:28 2017 - [warning] Connection failed 1 time(s)..
+Sat Jul  8 18:53:29 2017 - [info] HealthCheck: SSH to 172.30.105.116 is reachable.
+Sat Jul  8 18:53:29 2017 - [warning] Got error on MySQL connect: 2013 (Lost connection to MySQL server at 'reading initial communication packet', system error: 111)
+Sat Jul  8 18:53:29 2017 - [warning] Connection failed 2 time(s)..
+Sat Jul  8 18:53:30 2017 - [warning] Got error on MySQL connect: 2013 (Lost connection to MySQL server at 'reading initial communication packet', system error: 111)
+Sat Jul  8 18:53:30 2017 - [warning] Connection failed 3 time(s)..
+Sat Jul  8 18:53:30 2017 - [warning] Master is not reachable from health checker!
+Sat Jul  8 18:53:30 2017 - [warning] Master 172.30.105.116(172.30.105.116:3306) is not reachable!
+Sat Jul  8 18:53:30 2017 - [warning] SSH is reachable.
+Sat Jul  8 18:53:31 2017 - [info] Connecting to a master server failed. Reading configuration file /etc/masterha_default.cnf and /etc/masterha/app1.cnf again, and trying to connect to all servers to check server status..
+Sat Jul  8 18:53:31 2017 - [warning] Global configuration file /etc/masterha_default.cnf not found. Skipping.
+Sat Jul  8 18:53:31 2017 - [info] Reading application default configurations from /etc/masterha/app1.cnf..
+Sat Jul  8 18:53:31 2017 - [info] Reading server configurations from /etc/masterha/app1.cnf..
+Sat Jul  8 18:53:31 2017 - [info] Dead Servers:
+Sat Jul  8 18:53:31 2017 - [info]   172.30.105.116(172.30.105.116:3306)
+Sat Jul  8 18:53:31 2017 - [info] Alive Servers:
+Sat Jul  8 18:53:31 2017 - [info]   172.30.105.118(172.30.105.118:3306)
+Sat Jul  8 18:53:31 2017 - [info]   172.30.105.119(172.30.105.119:3306)
+Sat Jul  8 18:53:31 2017 - [info] Alive Slaves:
+Sat Jul  8 18:53:31 2017 - [info]   172.30.105.118(172.30.105.118:3306)  Version=5.5.56-MariaDB (oldest major version between slaves) log-bin:enabled
+Sat Jul  8 18:53:31 2017 - [info]     Replicating from 172.30.105.116(172.30.105.116:3306)
+Sat Jul  8 18:53:31 2017 - [info]     Primary candidate for the new Master (candidate_master is set)
+Sat Jul  8 18:53:31 2017 - [info]   172.30.105.119(172.30.105.119:3306)  Version=5.5.56-MariaDB (oldest major version between slaves) log-bin:enabled
+Sat Jul  8 18:53:31 2017 - [info]     Replicating from 172.30.105.116(172.30.105.116:3306)
+Sat Jul  8 18:53:31 2017 - [info]     Primary candidate for the new Master (candidate_master is set)
+Sat Jul  8 18:53:31 2017 - [info] Checking slave configurations..
+Sat Jul  8 18:53:31 2017 - [info] Checking replication filtering settings..
+Sat Jul  8 18:53:31 2017 - [info]  Replication filtering check ok.
+Sat Jul  8 18:53:31 2017 - [info] Master is down!
+Sat Jul  8 18:53:31 2017 - [info] Terminating monitoring script.
+Sat Jul  8 18:53:31 2017 - [info] Got exit code 20 (Master dead).
+Sat Jul  8 18:53:31 2017 - [info] MHA::MasterFailover version 0.55.
+Sat Jul  8 18:53:31 2017 - [info] Starting master failover.
+Sat Jul  8 18:53:31 2017 - [info] 
+Sat Jul  8 18:53:31 2017 - [info] * Phase 1: Configuration Check Phase..
+Sat Jul  8 18:53:31 2017 - [info] 
+Sat Jul  8 18:53:31 2017 - [info] Dead Servers:
+Sat Jul  8 18:53:31 2017 - [info]   172.30.105.116(172.30.105.116:3306)
+Sat Jul  8 18:53:31 2017 - [info] Checking master reachability via mysql(double check)..
+Sat Jul  8 18:53:31 2017 - [info]  ok.
+Sat Jul  8 18:53:31 2017 - [info] Alive Servers:
+Sat Jul  8 18:53:31 2017 - [info]   172.30.105.118(172.30.105.118:3306)
+Sat Jul  8 18:53:31 2017 - [info]   172.30.105.119(172.30.105.119:3306)
+Sat Jul  8 18:53:31 2017 - [info] Alive Slaves:
+Sat Jul  8 18:53:31 2017 - [info]   172.30.105.118(172.30.105.118:3306)  Version=5.5.56-MariaDB (oldest major version between slaves) log-bin:enabled
+Sat Jul  8 18:53:31 2017 - [info]     Replicating from 172.30.105.116(172.30.105.116:3306)
+Sat Jul  8 18:53:31 2017 - [info]     Primary candidate for the new Master (candidate_master is set)
+Sat Jul  8 18:53:31 2017 - [info]   172.30.105.119(172.30.105.119:3306)  Version=5.5.56-MariaDB (oldest major version between slaves) log-bin:enabled
+Sat Jul  8 18:53:31 2017 - [info]     Replicating from 172.30.105.116(172.30.105.116:3306)
+Sat Jul  8 18:53:31 2017 - [info]     Primary candidate for the new Master (candidate_master is set)
+Sat Jul  8 18:53:31 2017 - [info] ** Phase 1: Configuration Check Phase completed.
+Sat Jul  8 18:53:31 2017 - [info] 
+Sat Jul  8 18:53:31 2017 - [info] * Phase 2: Dead Master Shutdown Phase..
+Sat Jul  8 18:53:31 2017 - [info] 
+Sat Jul  8 18:53:31 2017 - [info] Forcing shutdown so that applications never connect to the current master..
+Sat Jul  8 18:53:31 2017 - [info] Executing master IP deactivatation script:
+Sat Jul  8 18:53:31 2017 - [info]   /usr/bin/master_ip_failover --orig_master_host=172.30.105.116 --orig_master_ip=172.30.105.116 --orig_master_port=3306 --command=stopssh --ssh_user=root  
+
+
+IN SCRIPT TEST====/sbin/ifconfig eth0:1 down==/sbin/ifconfig eth0:1 172.30.105.120/24===
+
+Disabling the VIP on old master: 172.30.105.116 
+eth0:1: ERROR while getting interface flags: No such device
+Sat Jul  8 18:53:37 2017 - [info]  done.
+Sat Jul  8 18:53:37 2017 - [warning] shutdown_script is not set. Skipping explicit shutting down of the dead master.
+Sat Jul  8 18:53:37 2017 - [info] * Phase 2: Dead Master Shutdown Phase completed.
+Sat Jul  8 18:53:37 2017 - [info] 
+Sat Jul  8 18:53:37 2017 - [info] * Phase 3: Master Recovery Phase..
+Sat Jul  8 18:53:37 2017 - [info] 
+Sat Jul  8 18:53:37 2017 - [info] * Phase 3.1: Getting Latest Slaves Phase..
+Sat Jul  8 18:53:37 2017 - [info] 
+Sat Jul  8 18:53:37 2017 - [info] The latest binary log file/position on all slaves is mysql-bin.000016:245
+Sat Jul  8 18:53:37 2017 - [info] Latest slaves (Slaves that received relay log files to the latest):
+Sat Jul  8 18:53:37 2017 - [info]   172.30.105.118(172.30.105.118:3306)  Version=5.5.56-MariaDB (oldest major version between slaves) log-bin:enabled
+Sat Jul  8 18:53:37 2017 - [info]     Replicating from 172.30.105.116(172.30.105.116:3306)
+Sat Jul  8 18:53:37 2017 - [info]     Primary candidate for the new Master (candidate_master is set)
+Sat Jul  8 18:53:37 2017 - [info]   172.30.105.119(172.30.105.119:3306)  Version=5.5.56-MariaDB (oldest major version between slaves) log-bin:enabled
+Sat Jul  8 18:53:37 2017 - [info]     Replicating from 172.30.105.116(172.30.105.116:3306)
+Sat Jul  8 18:53:37 2017 - [info]     Primary candidate for the new Master (candidate_master is set)
+Sat Jul  8 18:53:37 2017 - [info] The oldest binary log file/position on all slaves is mysql-bin.000016:245
+Sat Jul  8 18:53:37 2017 - [info] Oldest slaves:
+Sat Jul  8 18:53:37 2017 - [info]   172.30.105.118(172.30.105.118:3306)  Version=5.5.56-MariaDB (oldest major version between slaves) log-bin:enabled
+Sat Jul  8 18:53:37 2017 - [info]     Replicating from 172.30.105.116(172.30.105.116:3306)
+Sat Jul  8 18:53:37 2017 - [info]     Primary candidate for the new Master (candidate_master is set)
+Sat Jul  8 18:53:37 2017 - [info]   172.30.105.119(172.30.105.119:3306)  Version=5.5.56-MariaDB (oldest major version between slaves) log-bin:enabled
+Sat Jul  8 18:53:37 2017 - [info]     Replicating from 172.30.105.116(172.30.105.116:3306)
+Sat Jul  8 18:53:37 2017 - [info]     Primary candidate for the new Master (candidate_master is set)
+Sat Jul  8 18:53:37 2017 - [info] 
+Sat Jul  8 18:53:37 2017 - [info] * Phase 3.2: Saving Dead Master's Binlog Phase..
+Sat Jul  8 18:53:37 2017 - [info] 
+Sat Jul  8 18:53:39 2017 - [info] Fetching dead master's binary logs..
+Sat Jul  8 18:53:39 2017 - [info] Executing command on the dead master 172.30.105.116(172.30.105.116:3306): save_binary_logs --command=save --start_file=mysql-bin.000016  --start_pos=245 --binlog_dir=/mydata/binlogs/ --output_file=/data/masterha/app1/saved_master_binlog_from_172.30.105.116_3306_20170708185331.binlog --handle_raw_binlog=1 --disable_log_bin=0 --manager_version=0.55
+  Creating /data/masterha/app1 if not exists..    ok.
+ Concat binary/relay logs from mysql-bin.000016 pos 245 to mysql-bin.000016 EOF into /data/masterha/app1/saved_master_binlog_from_172.30.105.116_3306_20170708185331.binlog ..
+  Dumping binlog format description event, from position 0 to 245.. ok.
+  Dumping effective binlog data from /mydata/binlogs//mysql-bin.000016 position 245 to tail(264).. ok.
+ Concat succeeded.
+Sat Jul  8 18:53:44 2017 - [info] scp from root@172.30.105.116:/data/masterha/app1/saved_master_binlog_from_172.30.105.116_3306_20170708185331.binlog to local:/data/masterha/app1/saved_master_binlog_from_172.30.105.116_3306_20170708185331.binlog succeeded.
+Sat Jul  8 18:53:46 2017 - [info] HealthCheck: SSH to 172.30.105.118 is reachable.
+Sat Jul  8 18:53:48 2017 - [info] HealthCheck: SSH to 172.30.105.119 is reachable.
+Sat Jul  8 18:53:50 2017 - [info] 
+Sat Jul  8 18:53:50 2017 - [info] * Phase 3.3: Determining New Master Phase..
+Sat Jul  8 18:53:50 2017 - [info] 
+Sat Jul  8 18:53:50 2017 - [info] Finding the latest slave that has all relay logs for recovering other slaves..
+Sat Jul  8 18:53:50 2017 - [info] All slaves received relay logs to the same position. No need to resync each other.
+Sat Jul  8 18:53:50 2017 - [info] Searching new master from slaves..
+Sat Jul  8 18:53:50 2017 - [info]  Candidate masters from the configuration file:
+Sat Jul  8 18:53:50 2017 - [info]   172.30.105.118(172.30.105.118:3306)  Version=5.5.56-MariaDB (oldest major version between slaves) log-bin:enabled
+Sat Jul  8 18:53:50 2017 - [info]     Replicating from 172.30.105.116(172.30.105.116:3306)
+Sat Jul  8 18:53:50 2017 - [info]     Primary candidate for the new Master (candidate_master is set)
+Sat Jul  8 18:53:50 2017 - [info]   172.30.105.119(172.30.105.119:3306)  Version=5.5.56-MariaDB (oldest major version between slaves) log-bin:enabled
+Sat Jul  8 18:53:50 2017 - [info]     Replicating from 172.30.105.116(172.30.105.116:3306)
+Sat Jul  8 18:53:50 2017 - [info]     Primary candidate for the new Master (candidate_master is set)
+Sat Jul  8 18:53:50 2017 - [info]  Non-candidate masters:
+Sat Jul  8 18:53:50 2017 - [info]  Searching from candidate_master slaves which have received the latest relay log events..
+Sat Jul  8 18:53:50 2017 - [info] New master is 172.30.105.118(172.30.105.118:3306)
+Sat Jul  8 18:53:50 2017 - [info] Starting master failover..
+Sat Jul  8 18:53:50 2017 - [info] 
+From:
+172.30.105.116 (current master)
+ +--172.30.105.118
+ +--172.30.105.119
+
+To:
+172.30.105.118 (new master)
+ +--172.30.105.119
+Sat Jul  8 18:53:50 2017 - [info] 
+Sat Jul  8 18:53:50 2017 - [info] * Phase 3.3: New Master Diff Log Generation Phase..
+Sat Jul  8 18:53:50 2017 - [info] 
+Sat Jul  8 18:53:50 2017 - [info]  This server has all relay logs. No need to generate diff files from the latest slave.
+Sat Jul  8 18:53:50 2017 - [info] Sending binlog..
+Sat Jul  8 18:53:52 2017 - [info] scp from local:/data/masterha/app1/saved_master_binlog_from_172.30.105.116_3306_20170708185331.binlog to root@172.30.105.118:/data/masterha/app1/saved_master_binlog_from_172.30.105.116_3306_20170708185331.binlog succeeded.
+Sat Jul  8 18:53:52 2017 - [info] 
+Sat Jul  8 18:53:52 2017 - [info] * Phase 3.4: Master Log Apply Phase..
+Sat Jul  8 18:53:52 2017 - [info] 
+Sat Jul  8 18:53:52 2017 - [info] *NOTICE: If any error happens from this phase, manual recovery is needed.
+Sat Jul  8 18:53:52 2017 - [info] Starting recovery on 172.30.105.118(172.30.105.118:3306)..
+Sat Jul  8 18:53:52 2017 - [info]  Generating diffs succeeded.
+Sat Jul  8 18:53:52 2017 - [info] Waiting until all relay logs are applied.
+Sat Jul  8 18:53:52 2017 - [info]  done.
+Sat Jul  8 18:53:52 2017 - [info] Getting slave status..
+Sat Jul  8 18:53:52 2017 - [info] This slave(172.30.105.118)'s Exec_Master_Log_Pos equals to Read_Master_Log_Pos(mysql-bin.000016:245). No need to recover from Exec_Master_Log_Pos.
+Sat Jul  8 18:53:52 2017 - [info] Connecting to the target slave host 172.30.105.118, running recover script..
+Sat Jul  8 18:53:52 2017 - [info] Executing command: apply_diff_relay_logs --command=apply --slave_user='mhauser' --slave_host=172.30.105.118 --slave_ip=172.30.105.118  --slave_port=3306 --apply_files=/data/masterha/app1/saved_master_binlog_from_172.30.105.116_3306_20170708185331.binlog --workdir=/data/masterha/app1 --target_version=5.5.56-MariaDB --timestamp=20170708185331 --handle_raw_binlog=1 --disable_log_bin=0 --manager_version=0.55 --slave_pass=xxx
+Sat Jul  8 18:53:54 2017 - [info] 
+Applying differential binary/relay log files /data/masterha/app1/saved_master_binlog_from_172.30.105.116_3306_20170708185331.binlog on 172.30.105.118:3306. This may take long time...
+Applying log files succeeded.
+Sat Jul  8 18:53:54 2017 - [info]  All relay logs were successfully applied.
+Sat Jul  8 18:53:54 2017 - [info] Getting new master's binlog name and position..
+Sat Jul  8 18:53:54 2017 - [info]  mysql-bin.000009:245
+Sat Jul  8 18:53:54 2017 - [info]  All other slaves should start replication from here. Statement should be: CHANGE MASTER TO MASTER_HOST='172.30.105.118', MASTER_PORT=3306, MASTER_LOG_FILE='mysql-bin.000009', MASTER_LOG_POS=245, MASTER_USER='repluser', MASTER_PASSWORD='xxx';
+Sat Jul  8 18:53:54 2017 - [info] Executing master IP activate script:
+Sat Jul  8 18:53:54 2017 - [info]   /usr/bin/master_ip_failover --command=start --ssh_user=root --orig_master_host=172.30.105.116 --orig_master_ip=172.30.105.116 --orig_master_port=3306 --new_master_host=172.30.105.118 --new_master_ip=172.30.105.118 --new_master_port=3306 --new_master_user='mhauser' --new_master_password='mhapass'  
+Unknown option: new_master_user
+Unknown option: new_master_password
+
+
+IN SCRIPT TEST====/sbin/ifconfig eth0:1 down==/sbin/ifconfig eth0:1 172.30.105.120/24===
+
+Enabling the VIP - 172.30.105.120/24 on the new master - 172.30.105.118 
+Sat Jul  8 18:53:56 2017 - [info]  OK.
+Sat Jul  8 18:53:56 2017 - [info] Setting read_only=0 on 172.30.105.118(172.30.105.118:3306)..
+Sat Jul  8 18:53:56 2017 - [info]  ok.
+Sat Jul  8 18:53:56 2017 - [info] ** Finished master recovery successfully.
+Sat Jul  8 18:53:56 2017 - [info] * Phase 3: Master Recovery Phase completed.
+Sat Jul  8 18:53:56 2017 - [info] 
+Sat Jul  8 18:53:56 2017 - [info] * Phase 4: Slaves Recovery Phase..
+Sat Jul  8 18:53:56 2017 - [info] 
+Sat Jul  8 18:53:56 2017 - [info] * Phase 4.1: Starting Parallel Slave Diff Log Generation Phase..
+Sat Jul  8 18:53:56 2017 - [info] 
+Sat Jul  8 18:53:56 2017 - [info] -- Slave diff file generation on host 172.30.105.119(172.30.105.119:3306) started, pid: 28114. Check tmp log /data/masterha/app1/172.30.105.119_3306_20170708185331.log if it takes time..
+Sat Jul  8 18:53:56 2017 - [info] 
+Sat Jul  8 18:53:56 2017 - [info] Log messages from 172.30.105.119 ...
+Sat Jul  8 18:53:56 2017 - [info] 
+Sat Jul  8 18:53:56 2017 - [info]  This server has all relay logs. No need to generate diff files from the latest slave.
+Sat Jul  8 18:53:56 2017 - [info] End of log messages from 172.30.105.119.
+Sat Jul  8 18:53:56 2017 - [info] -- 172.30.105.119(172.30.105.119:3306) has the latest relay log events.
+Sat Jul  8 18:53:56 2017 - [info] Generating relay diff files from the latest slave succeeded.
+Sat Jul  8 18:53:56 2017 - [info] 
+Sat Jul  8 18:53:56 2017 - [info] * Phase 4.2: Starting Parallel Slave Log Apply Phase..
+Sat Jul  8 18:53:56 2017 - [info] 
+Sat Jul  8 18:53:56 2017 - [info] -- Slave recovery on host 172.30.105.119(172.30.105.119:3306) started, pid: 28116. Check tmp log /data/masterha/app1/172.30.105.119_3306_20170708185331.log if it takes time..
+Sat Jul  8 18:54:00 2017 - [info] 
+Sat Jul  8 18:54:00 2017 - [info] Log messages from 172.30.105.119 ...
+Sat Jul  8 18:54:00 2017 - [info] 
+Sat Jul  8 18:53:56 2017 - [info] Sending binlog..
+Sat Jul  8 18:53:59 2017 - [info] scp from local:/data/masterha/app1/saved_master_binlog_from_172.30.105.116_3306_20170708185331.binlog to root@172.30.105.119:/data/masterha/app1/saved_master_binlog_from_172.30.105.116_3306_20170708185331.binlog succeeded.
+Sat Jul  8 18:53:59 2017 - [info] Starting recovery on 172.30.105.119(172.30.105.119:3306)..
+Sat Jul  8 18:53:59 2017 - [info]  Generating diffs succeeded.
+Sat Jul  8 18:53:59 2017 - [info] Waiting until all relay logs are applied.
+Sat Jul  8 18:53:59 2017 - [info]  done.
+Sat Jul  8 18:53:59 2017 - [info] Getting slave status..
+Sat Jul  8 18:53:59 2017 - [info] This slave(172.30.105.119)'s Exec_Master_Log_Pos equals to Read_Master_Log_Pos(mysql-bin.000016:245). No need to recover from Exec_Master_Log_Pos.
+Sat Jul  8 18:53:59 2017 - [info] Connecting to the target slave host 172.30.105.119, running recover script..
+Sat Jul  8 18:53:59 2017 - [info] Executing command: apply_diff_relay_logs --command=apply --slave_user='mhauser' --slave_host=172.30.105.119 --slave_ip=172.30.105.119  --slave_port=3306 --apply_files=/data/masterha/app1/saved_master_binlog_from_172.30.105.116_3306_20170708185331.binlog --workdir=/data/masterha/app1 --target_version=5.5.56-MariaDB --timestamp=20170708185331 --handle_raw_binlog=1 --disable_log_bin=0 --manager_version=0.55 --slave_pass=xxx
+Sat Jul  8 18:54:00 2017 - [info] 
+Applying differential binary/relay log files /data/masterha/app1/saved_master_binlog_from_172.30.105.116_3306_20170708185331.binlog on 172.30.105.119:3306. This may take long time...
+Applying log files succeeded.
+Sat Jul  8 18:54:00 2017 - [info]  All relay logs were successfully applied.
+Sat Jul  8 18:54:00 2017 - [info]  Resetting slave 172.30.105.119(172.30.105.119:3306) and starting replication from the new master 172.30.105.118(172.30.105.118:3306)..
+Sat Jul  8 18:54:00 2017 - [info]  Executed CHANGE MASTER.
+Sat Jul  8 18:54:00 2017 - [info]  Slave started.
+Sat Jul  8 18:54:00 2017 - [info] End of log messages from 172.30.105.119.
+Sat Jul  8 18:54:00 2017 - [info] -- Slave recovery on host 172.30.105.119(172.30.105.119:3306) succeeded.
+Sat Jul  8 18:54:00 2017 - [info] All new slave servers recovered successfully.
+Sat Jul  8 18:54:00 2017 - [info] 
+Sat Jul  8 18:54:00 2017 - [info] * Phase 5: New master cleanup phase..
+Sat Jul  8 18:54:00 2017 - [info] 
+Sat Jul  8 18:54:00 2017 - [info] Resetting slave info on the new master..
+Sat Jul  8 18:54:00 2017 - [info]  172.30.105.118: Resetting slave info succeeded.
+Sat Jul  8 18:54:00 2017 - [info] Master failover to 172.30.105.118(172.30.105.118:3306) completed successfully.
+Sat Jul  8 18:54:00 2017 - [info] Deleted server1 entry from /etc/masterha/app1.cnf .
+Sat Jul  8 18:54:00 2017 - [info] 
+
+----- Failover Report -----
+
+app1: MySQL Master failover 172.30.105.116 to 172.30.105.118 succeeded
+
+Master 172.30.105.116 is down!
+
+Check MHA Manager logs at node1:/data/masterha/manager.log for details.
+
+Started automated(non-interactive) failover.
+Invalidated master IP address on 172.30.105.116.
+The latest slave 172.30.105.118(172.30.105.118:3306) has all relay logs for recovery.
+Selected 172.30.105.118 as a new master.
+172.30.105.118: OK: Applying all logs succeeded.
+172.30.105.118: OK: Activated master IP address.
+172.30.105.119: This host has the latest relay log events.
+Generating relay diff files from the latest slave succeeded.
+172.30.105.119: OK: Applying all logs succeeded. Slave started, replicating from 172.30.105.118.
+172.30.105.118: Resetting slave info succeeded.
+Master failover to 172.30.105.118(172.30.105.118:3306) completed successfully.
